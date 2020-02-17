@@ -1,4 +1,6 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:todoey/components/tasks_list.dart';
 
 class TasksScreen extends StatelessWidget {
   @override
@@ -61,13 +63,16 @@ class TasksScreen extends StatelessWidget {
         ],
         crossAxisAlignment: CrossAxisAlignment.start,
       ),
-      floatingActionButton: FloatingActionButton(
-        backgroundColor: Colors.lightBlueAccent,
-        child: Icon(
-          Icons.add,
-          size: 35.0,
+      floatingActionButton: Padding(
+        padding: EdgeInsets.only(right: 20.0, bottom: 20.0),
+        child: FloatingActionButton(
+          backgroundColor: Colors.lightBlueAccent,
+          child: Icon(
+            Icons.add,
+            size: 35.0,
+          ),
+          onPressed: () {},
         ),
-        onPressed: () {},
       ),
     );
   }
