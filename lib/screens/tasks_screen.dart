@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:todoey/components/tasks_list.dart';
+import 'package:todoey/screens/add_task_screen.dart';
 
 class TasksScreen extends StatelessWidget {
   @override
@@ -69,7 +70,12 @@ class TasksScreen extends StatelessWidget {
             Icons.add,
             size: 35.0,
           ),
-          onPressed: () {},
+          onPressed: () {
+            showModalBottomSheet(
+              builder: (context) => AddTaskScreen(),
+              context: context,
+            );
+          },
         ),
       ),
     );
