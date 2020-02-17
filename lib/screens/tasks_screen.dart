@@ -11,11 +11,7 @@ class TasksScreen extends StatelessWidget {
         children: <Widget>[
           Container(
             padding: EdgeInsets.only(
-              top: 60.0,
-              left: 30.0,
-              right: 30.0,
-              bottom: 30.0,
-            ),
+                top: 60.0, left: 30.0, right: 30.0, bottom: 30.0),
             child: Column(
               children: <Widget>[
                 CircleAvatar(
@@ -51,6 +47,7 @@ class TasksScreen extends StatelessWidget {
           ),
           Expanded(
             child: Container(
+              child: TasksList(),
               decoration: BoxDecoration(
                 borderRadius: BorderRadius.only(
                   topLeft: Radius.circular(20.0),
@@ -58,6 +55,7 @@ class TasksScreen extends StatelessWidget {
                 ),
                 color: Colors.white,
               ),
+              padding: EdgeInsets.symmetric(horizontal: 20.0),
             ),
           ),
         ],
