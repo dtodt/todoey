@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:todoey/constants.dart';
 
 class AddTaskScreen extends StatelessWidget {
   @override
@@ -6,15 +7,36 @@ class AddTaskScreen extends StatelessWidget {
     return Container(
       child: Container(
         child: Column(
+          crossAxisAlignment: CrossAxisAlignment.stretch,
           children: <Widget>[
             Text(
               'Add Task',
-              style: TextStyle(
-                color: Colors.lightBlueAccent,
-                fontSize: 30.0
-              ),
+              textAlign: TextAlign.center,
+              style: TextStyle(color: Colors.lightBlueAccent, fontSize: 30.0),
             ),
-            TextField()
+            TextField(
+              autofocus: true,
+              decoration: InputDecoration(
+                border: kTextFieldBorder,
+                enabledBorder: kTextFieldBorder,
+                focusedBorder: kTextFieldBorder,
+              ),
+              textAlign: TextAlign.center,
+            ),
+            SizedBox(
+              height: 25.0,
+            ),
+            FlatButton(
+              child: Text(
+                'Add',
+                style: TextStyle(
+                  color: Colors.white,
+                ),
+              ),
+              color: Colors.lightBlueAccent,
+              onPressed: () {},
+              padding: EdgeInsets.symmetric(vertical: 15.0),
+            ),
           ],
         ),
         decoration: BoxDecoration(
@@ -24,7 +46,7 @@ class AddTaskScreen extends StatelessWidget {
           ),
           color: Colors.white,
         ),
-        padding: EdgeInsets.only(left: 40.0, right: 40.0, top: 30.0),
+        padding: EdgeInsets.all(40.0),
       ),
       color: Color(0xff757575),
     );
