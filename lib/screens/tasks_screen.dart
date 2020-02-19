@@ -1,9 +1,21 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:todoey/components/tasks_list.dart';
+import 'package:todoey/models/task.dart';
 import 'package:todoey/screens/add_task_screen.dart';
 
-class TasksScreen extends StatelessWidget {
+class TasksScreen extends StatefulWidget {
+  @override
+  _TasksScreenState createState() => _TasksScreenState();
+}
+
+class _TasksScreenState extends State<TasksScreen> {
+  List<Task> tasks = [
+    Task(name: 'Buy milk'),
+    Task(name: 'Buy eggs'),
+    Task(name: 'Buy detergent'),
+  ];
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -48,7 +60,14 @@ class TasksScreen extends StatelessWidget {
           ),
           Expanded(
             child: Container(
-              child: TasksList(),
+              child: TasksList(
+                tasks: tasks,
+                toggleCheckbox: (index) {
+                  setState(() {
+                    tasks[index].toggleDone();
+                  });
+                },
+              ),
               decoration: BoxDecoration(
                 borderRadius: BorderRadius.only(
                   topLeft: Radius.circular(20.0),
@@ -70,8 +89,8 @@ class TasksScreen extends StatelessWidget {
             Icons.add,
             size: 35.0,
           ),
-          onPressed: () {
-            showModalBottomSheet(
+          onPressed: () async {
+            var typedTask = await showModalBottomSheet(
               builder: (context) => SingleChildScrollView(
                 child: Container(
                   padding: EdgeInsets.only(
@@ -83,6 +102,11 @@ class TasksScreen extends StatelessWidget {
               context: context,
               isScrollControlled: true,
             );
+            if (typedTask != null) {
+              setState(() {
+                tasks.add(Task(name: typedTask));
+              });
+            }
           },
         ),
       ),

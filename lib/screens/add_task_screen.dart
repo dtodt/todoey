@@ -1,7 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:todoey/constants.dart';
 
-class AddTaskScreen extends StatelessWidget {
+class AddTaskScreen extends StatefulWidget {
+  @override
+  _AddTaskScreenState createState() => _AddTaskScreenState();
+}
+
+class _AddTaskScreenState extends State<AddTaskScreen> {
+  String taskName;
+
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -21,6 +28,11 @@ class AddTaskScreen extends StatelessWidget {
                 enabledBorder: kTextFieldBorder,
                 focusedBorder: kTextFieldBorder,
               ),
+              onChanged: (value) {
+                setState(() {
+                  taskName = value;
+                });
+              },
               textAlign: TextAlign.center,
             ),
             SizedBox(
@@ -34,7 +46,9 @@ class AddTaskScreen extends StatelessWidget {
                 ),
               ),
               color: Colors.lightBlueAccent,
-              onPressed: () {},
+              onPressed: () {
+                Navigator.pop(context, taskName);
+              },
               padding: EdgeInsets.symmetric(vertical: 15.0),
             ),
           ],
