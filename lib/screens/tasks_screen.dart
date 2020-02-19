@@ -8,8 +8,8 @@ import 'package:todoey/screens/add_task_screen.dart';
 class TasksScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    final allTasks = Provider.of<TasksState>(context).allTasks();
-    final unDoneTasks = Provider.of<TasksState>(context).unDoneTasks();
+    final allTasks = Provider.of<TasksState>(context).allTasks;
+    final unDoneTasks = Provider.of<TasksState>(context).unDoneTasks;
     return Scaffold(
       backgroundColor: Colors.lightBlueAccent,
       body: Column(

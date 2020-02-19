@@ -4,11 +4,11 @@ import 'package:todoey/models/task.dart';
 class TasksState extends ChangeNotifier {
   final List<Task> tasks = [];
 
-  int allTasks() {
+  int get allTasks {
     return tasks.length;
   }
 
-  int unDoneTasks() {
+  int get unDoneTasks {
     return tasks.where((task) => !task.isDone).length;
   }
 
