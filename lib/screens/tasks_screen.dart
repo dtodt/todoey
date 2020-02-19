@@ -40,7 +40,7 @@ class TasksScreen extends StatelessWidget {
                   ),
                 ),
                 Text(
-                  '$unDoneTasks tasks of $allTasks',
+                  '$unDoneTasks of $allTasks tasks',
                   style: TextStyle(
                     color: Colors.white,
                     fontSize: 18.0,
