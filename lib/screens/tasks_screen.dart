@@ -1,23 +1,15 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 import 'package:todoey/components/tasks_list.dart';
-import 'package:todoey/models/task.dart';
+import 'package:todoey/models/tasks_state.dart';
 import 'package:todoey/screens/add_task_screen.dart';
 
-class TasksScreen extends StatefulWidget {
-  @override
-  _TasksScreenState createState() => _TasksScreenState();
-}
-
-class _TasksScreenState extends State<TasksScreen> {
-  List<Task> tasks = [
-    Task(name: 'Buy milk'),
-    Task(name: 'Buy eggs'),
-    Task(name: 'Buy detergent'),
-  ];
-
+class TasksScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
+    final allTasks = Provider.of<TasksState>(context).allTasks();
+    final unDoneTasks = Provider.of<TasksState>(context).unDoneTasks();
     return Scaffold(
       backgroundColor: Colors.lightBlueAccent,
       body: Column(
@@ -48,7 +40,7 @@ class _TasksScreenState extends State<TasksScreen> {
                   ),
                 ),
                 Text(
-                  '${tasks.length} tasks',
+                  '$unDoneTasks tasks of $allTasks',
                   style: TextStyle(
                     color: Colors.white,
                     fontSize: 18.0,
@@ -60,14 +52,7 @@ class _TasksScreenState extends State<TasksScreen> {
           ),
           Expanded(
             child: Container(
-              child: TasksList(
-                tasks: tasks,
-                toggleCheckbox: (index) {
-                  setState(() {
-                    tasks[index].toggleDone();
-                  });
-                },
-              ),
+              child: TasksList(),
               decoration: BoxDecoration(
                 borderRadius: BorderRadius.only(
                   topLeft: Radius.circular(20.0),
@@ -103,9 +88,10 @@ class _TasksScreenState extends State<TasksScreen> {
               isScrollControlled: true,
             );
             if (typedTask != null) {
-              setState(() {
-                tasks.add(Task(name: typedTask));
-              });
+              Provider.of<TasksState>(
+                context,
+                listen: false,
+              ).addTask(typedTask);
             }
           },
         ),
