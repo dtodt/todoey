@@ -6,7 +6,7 @@ import 'package:todoey/models/task.dart';
 class TasksState extends ChangeNotifier {
   final List<Task> _tasks = [];
 
-  UnmodifiableListView<Task> get tasks => _tasks;
+  UnmodifiableListView<Task> get tasks => UnmodifiableListView(_tasks);
 
   int get allTasks => _tasks.length;
 
