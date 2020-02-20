@@ -17,6 +17,11 @@ class TasksState extends ChangeNotifier {
     notifyListeners();
   }
 
+  void removeTask(int index) {
+    _tasks.removeAt(index);
+    notifyListeners();
+  }
+
   void toggleTask(int index) {
     _tasks[index].toggleDone();
     notifyListeners();

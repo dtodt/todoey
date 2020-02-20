@@ -13,6 +13,10 @@ class TasksList extends StatelessWidget {
             return TaskTile(
               title: taskState.tasks[index].name,
               checked: taskState.tasks[index].isDone,
+              onHold: () => Provider.of<TasksState>(
+                context,
+                listen: false,
+              ).removeTask(index),
               toggleCheckbox: (value) => Provider.of<TasksState>(
                 context,
                 listen: false,
